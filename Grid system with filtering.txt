@@ -1,0 +1,108 @@
+Backend Implementation:
+
+1. Load Student Details API:
+
+To retrieve the student details from a CSV file, the following steps will be implemented in the API:
+
+Step 1: Read the CSV file using pandas library.
+
+Step 2: Apply the pagination limit and offset to fetch the required data.
+
+Step 3: Return the paginated data as a response.
+
+The API endpoint for retrieving student details will be implemented as follows:
+
+GET /api/students?page=<page>&size=<size>
+
+
+The parameters passed to the API are:
+
+- page: The current page number requested. Default value is 0.
+- size: The number of items to be displayed per page. Default value is 10.
+
+The API will return the following response object:
+
+{
+    "data": [
+        {
+            "id": "1",
+            "name": "John Doe",
+            "total_marks": "89",
+            ...
+        },
+        ...
+    ],
+    "page": 0,
+    "size": 10,
+    "total_records": 100
+}
+
+
+Where:
+
+- data: An array of student records.
+- page: The current page number.
+- size: The number of items per page.
+- total_records: The total number of records in the CSV file.
+
+2. Server-side Filtering API:
+
+To implement server-side filtering functionality in the backend, the following steps will be implemented:
+
+Step 1: Read the CSV file using pandas library.
+
+Step 2: Filter the data based on the filter criteria.
+
+Step 3: Apply the pagination limit and offset to fetch the required data.
+
+Step 4: Return the paginated and filtered data as a response.
+
+The API endpoint for filtering student details will be implemented as follows:
+
+GET /api/students/filter?page=<page>&size=<size>&criteria=<criteria>
+
+
+The parameters passed to the API are:
+
+- page: The current page number requested. Default value is 0.
+- size: The number of items to be displayed per page. Default value is 10.
+- criteria: The filter criteria to be applied. It could be a JSON object or a query string.
+
+Sample filter criteria:
+
+- {"name": "John Doe"}: Filter records where the 'name' column matches 'John Doe'.
+- {"total_marks": {"$gt": 80}}: Filter records where the 'total_marks' column is greater than 80.
+
+The API will return the following response object:
+
+{
+    "data": [
+        {
+            "id": "1",
+            "name": "John Doe",
+            "total_marks": "89",
+            ...
+        },
+        ...
+    ],
+    "page": 0,
+    "size": 10,
+    "total_records": 50
+}
+
+
+Where:
+
+- data: An array of filtered student records.
+-
+
+page: The current page number.
+- size: The number of items per page.
+- total_records: The total number of filtered records.
+
+Bonus: Developing UI:
+
+A basic UI can be developed using any frontend framework such as React, Vue, or Angular. 
+The UI will communicate with the backend API to display the data and provide filtering functionality.
+The UI can be displayed as a table with pagination and filter inputs.
+The table headers can be sortable so that the user can sort the data based on any column
